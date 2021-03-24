@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/utils/Draggable.min.js"></script>
     <title>Electricity Company | @rohit_virkud</title>
     <style>
         *{
@@ -581,11 +582,22 @@
             },'-= 1')
 
 
+
+            var d = Draggable.create(".screen-01", {
+              type:"x",
+              //trigger:".orange", activate this line to allow dragging across the orange div 
+              bounds:{maxX:500, minX:0},
+              onDrag:function(){
+                console.log(this.x);
+                t1.progress(this.x/500)
+              }
+            })
+
+
             function share()
             {
                 toggleTween(t1);
-               
-               
+                  
             }
 
 
@@ -593,10 +605,7 @@
             function closeTheShare()
             {
             
-                toggleTween(t1);
-               
-
-               
+                toggleTween(t1);           
                 
             }
             function toggleTween(tween)
